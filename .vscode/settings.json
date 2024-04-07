@@ -1,4 +1,20 @@
 {
   "cmake.configureOnOpen": true,
-  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools"
+  "C_Cpp.default.configurationProvider": "ms-vscode.cmake-tools",
+  "C_Cpp.formatting": "clangFormat",
+  "C_Cpp.clang_format_fallbackStyle": "{ BasedOnStyle: Google, IndentWidth: 2, ColumnLimit: 0 }",
+  "files.associations": {
+    "*.html": "html",
+    "*.css": "postcss",
+    "*.t": "perl",
+    "*.yml": "yaml",
+    "*.peg": "pegjs",
+    "*.s": "arm",
+    "*.toml": "toml",
+    "time.h": "c",
+    "board.h": "c",
+    "gamepad.h": "c",
+    "tusb.h": "c",
+    "hid.h": "c"
+  },
 }

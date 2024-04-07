@@ -10,3 +10,5 @@ build:
 upload:
   openocd -f interface/cmsis-dap.cfg -c "adapter speed 5000" -f target/rp2040.cfg -c "program build/gamepad.elf verify reset exit"
 
+clean:
+  @rm -rf build

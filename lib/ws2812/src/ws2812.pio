@@ -1,0 +1,37 @@
+.program ws2812
+.side_set 1
+
+; ws2812 timings
+; 0: 0.35us high, 0.8us low (30% high, 70% low)
+; 1: 0.7us high, 0.6us low (54% high, 46% low)
+; reset: 50us low
+
+; ws2812b timings
+; 0: 0.4us high, 0.85us low (32% high, 68% low)
+; 1: 0.8us high, 0.45us low (64% high, 36% low)
+; reset: 50us low
+
+; ws2812c timings
+; 0: 0.3us high, 1.0us low (23% high, 77% low)
+; 1: 1.0us high, 0.3us low (77% high, 23% low)
+; reset: 280us low
+
+; |     T3    |   T1  |         T2        |     T3    |
+; |   |   |   |---|---|   |   |   |   |   |   |   |   |
+; |___|___|___|   |   |___|___|___|___|___|___|___|___| bit 0
+; |   |   |   |   |   |   |   |   |   |   |   |   |   |
+; |   |   |   |---|---|---|---|---|---|---|   |   |   |
+; |___|___|___|   |   |   |   |   |   |   |___|___|___| bit 1
+; |   |   |   |   |   |   |   |   |   |   |   |   |   |
+
+.define public T1 2
+.define public T2 5
+.define public T3 3
+
+bitloop:
+    out x, 1       side 0 [T3 - 1]
+    jmp !x do_zero side 1 [T1 - 1]
+do_one:
+    jmp  bitloop   side 1 [T2 - 1]
+do_zero:
+    nop            side 0 [T2 - 1]
